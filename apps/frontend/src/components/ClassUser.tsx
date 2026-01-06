@@ -84,7 +84,7 @@ function ClassUser({ title, sessionId }: { title: string; sessionId: string }) {
   return (
     // <li className="mb-2 px-4 py-3 rounded-xl bg-zinc-900 max-h-72 min-w-80">
     // <li className="mb-2 px-4 py-3 rounded-xl max-w-80 bg-zinc-900">
-    <li className="mb-2 px-4 py-3 rounded-xl max-w-80 bg-zinc-50 min-w-80 shadow-lg border border-zinc-100">
+    <li className="mb-2 px-4 py-3 rounded-xl max-w-80 bg-zinc-50 min-w-80 shadow-lg border border-zinc-200">
       <div className="flex justify-between mb-10 flex-wrap">
         {/* <span className="text-zinc-300 font-thin text-xl md:text-4xl tracking-tight"> */}
         <span className="text-zinc-900 font-thin text-xl md:text-3xl tracking-tight">
