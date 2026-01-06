@@ -65,7 +65,7 @@ function Chat() {
     );
   }
   return (
-    <div className="bg-zinc-900 row-span-4 rounded-xl p-2 h-full flex flex-col justify-between relative">
+    <div className="bg-zinc-200 row-span-4 rounded-md p-2 h-full flex flex-col justify-between relative">
       {isFetching && (
         <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-blue-300 font-extralight text-sm">
           fetching...
@@ -73,12 +73,12 @@ function Chat() {
       )}
       <section
         ref={containerRef}
-        className="flex-1 min-h-0 flex flex-col gap-1 relative overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-zinc-900 scrollbar-thumb-rounded p-3"
+        className="flex-1 min-h-0 flex flex-col gap-1 relative overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-zinc-900 scrollbar-thumb-rounded p-0"
       >
         {displayText.map((c, index) => (
           <div
             key={index}
-            className={`${c.user === CurrUser ? "justify-end" : "justify-start"} flex items-center bg-zinc-400 rounded-lg px-1`}
+            className={`${c.user === CurrUser ? "justify-end" : "justify-start"} flex items-center bg-zinc-50 rounded px-1`}
           >
             <span
               className={`${c.user === CurrUser ? "hidden" : "flex"} size-3 md:size-6 p-2 text-[8px] md:text-xs font-extralight rounded-full bg-zinc-900  justify-center items-center text-blue-300`}
@@ -103,8 +103,8 @@ function Chat() {
               }
             }}
             value={message}
-            placeholder="start typing..."
-            className="border border-zinc-700 rounded-xl h-10 w-full bg-zinc-900 px-2 py-1 text-zinc-300 text-[10px] md:text-sm font-thin"
+            placeholder="send a message..."
+            className="border border-zinc-400 rounded-md h-10 w-full bg-white px-2 py-1 text-zinc-900 text-[10px] md:text-sm font-thin focus:outline-none"
             onChange={(e) => setMessage(e.target.value)}
           />
         </div>

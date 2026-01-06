@@ -16,7 +16,7 @@ function UploadButton({
   return (
     <div className="group flex flex-col items-center cursor-pointer">
       <TbFileUpload
-        className="text-sm"
+        className="text-lg"
         onClick={async () => {
           const res = await uploadPdf();
           if (res === "No file selected") {
@@ -26,11 +26,11 @@ function UploadButton({
           setToDisplay("image");
         }}
       />
-      <span
+      {/* <span
         className={`text-[10px] md:text-xs group-hover:text-blue-200 font-thin ${loading ? "text-blue-300" : "text-zinc-600"}`}
       >
         {loading ? "Uploading..." : "Upload"}
-      </span>
+      </span> */}
     </div>
   );
 }

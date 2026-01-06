@@ -26,9 +26,9 @@ function AllClassesUser() {
       )}
       {!isFetching && sessions.length === 0 && (
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <p className="text-center text-zinc-500 text-xs font-thin">
+          <p className="text-center text-zinc-800 text-xs font-thin">
             No live classes at the moment. Please contact admin at {""}
-            <span className="text-blue-200">arvindkhoisnam23@gmail.com</span>
+            <span className="text-blue-500">vin.aka.ak@gmail.com</span>
           </p>
         </div>
       )}

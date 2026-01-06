@@ -13,7 +13,7 @@ function DrawButton({
   return (
     <div className="group flex flex-col items-center cursor-pointer">
       <MdDraw
-        className="text-sm"
+        className="text-lg"
         onClick={() => {
           setToDisplay("board");
           Socket?.send(
@@ -26,9 +26,9 @@ function DrawButton({
           );
         }}
       />
-      <span className="text-zinc-600 text-[10px] md:text-xs group-hover:text-blue-200 font-thin">
+      {/* <span className="text-zinc-600 text-[10px] md:text-xs group-hover:text-blue-200 font-thin">
         Draw
-      </span>
+      </span> */}
     </div>
   );
 }

@@ -83,20 +83,23 @@ function ClassUser({ title, sessionId }: { title: string; sessionId: string }) {
   }
   return (
     // <li className="mb-2 px-4 py-3 rounded-xl bg-zinc-900 max-h-72 min-w-80">
-    <li className="mb-2 px-4 py-3 rounded-xl max-w-80 bg-zinc-900">
+    // <li className="mb-2 px-4 py-3 rounded-xl max-w-80 bg-zinc-900">
+    <li className="mb-2 px-4 py-3 rounded-xl max-w-80 bg-zinc-50 min-w-80 shadow-lg border border-zinc-100">
       <div className="flex justify-between mb-10 flex-wrap">
-        <span className="text-zinc-300 font-thin text-xl md:text-4xl tracking-tight">
+        {/* <span className="text-zinc-300 font-thin text-xl md:text-4xl tracking-tight"> */}
+        <span className="text-zinc-900 font-thin text-xl md:text-3xl tracking-tight">
           {title}
         </span>
         <div
-          className={`flex items-center gap-2 font-thin text-base md:text-lg tracking-tight text-blue-300`}
+          className={`flex items-center gap-2 font-thin text-sm md:text-base tracking-tight text-blue-500`}
         >
           <MdOnlinePrediction />
           <span>Active</span>
         </div>
       </div>
-      <p className="text-zinc-300 text-[10px] md:text-sm tracking-tight leading-5 font-thin mb-10">
-        <span className="text-blue-300">Description:</span> Lorem ipsum dolor
+      {/* <p className="text-zinc-300 text-[10px] md:text-sm tracking-tight leading-5 font-thin mb-10"> */}
+      <p className="text-zinc-700 text-[10px] md:text-sm  leading-5 font-thin mb-10">
+        <span className="text-blue-500">Description:</span> Lorem ipsum dolor
         sit amet consectetur adipisicing elit. Sed autem non tenetur! Mollitia
         illo aut voluptatum, quas, voluptas illum soluta nemo vel qui aperiam
         ducimus incidunt minima, obcaecati ex! Hic.
@@ -104,7 +107,7 @@ function ClassUser({ title, sessionId }: { title: string; sessionId: string }) {
       <div className="flex w-full gap-2">
         <button
           onClick={joinSession}
-          className={`bg-blue-100 hover:bg-blue-200 py-3 rounded-lg text-neutral-950 font-thin w-full text-[10px] md:text-sm ${loading ? "cursor-not-allowed" : "cursor-pointer"}`}
+          className={`bg-blue-300 hover:bg-blue-400 py-3 rounded-lg text-neutral-950 font-thin w-full text-[10px] md:text-sm ${loading ? "cursor-not-allowed" : "cursor-pointer"}`}
         >
           {loading ? "Joining..." : "Join"}
         </button>

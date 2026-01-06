@@ -17,8 +17,8 @@ function AllClassAdmin() {
   }, [data]);
   return (
     <div>
-      <ul className="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  2xl:grid-cols-5 gap-y-3 gap-x-10 ">
-        {sessions.length &&
+      <ul className="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  2xl:grid-cols-5 gap-y-3 gap-x-10">
+        {sessions.length > 0 &&
           sessions.map((session: SessionType, index) => (
             <ClassAdmin
               title={session.title}

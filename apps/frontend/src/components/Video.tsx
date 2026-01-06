@@ -120,8 +120,9 @@ function Video({
     <>
       <video
         // className="h-full w-full bg-neutral-950 rounded-lg"
-        className="flex-1 min-h-0 w-full bg-neutral-950 rounded-lg"
+        className="flex-1 min-h-0 w-full"
         ref={videoRef}
+        style={{ transform: "scaleX(-1)" }}
       />
       <audio ref={audioRef} />
     </>

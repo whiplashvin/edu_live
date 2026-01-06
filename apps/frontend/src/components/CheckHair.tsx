@@ -33,33 +33,37 @@ function CheckHair({ startSession }: { startSession: () => Promise<void> }) {
   }, [cam, mic]);
   return (
     <div className="">
-      <DialogTitle className="text-2xl font-thin text-zinc-200 md:mb-5">
+      <DialogTitle className="text-lg font-thin text-zinc-700 md:mb-5">
         Check camera and mic
       </DialogTitle>
-      <video ref={vidRef} className="h-44 w-72 md:h-72 md:w-96 bg-zinc-900" />
+      <video
+        ref={vidRef}
+        className="h-44 w-72 md:h-72 md:w-96"
+        style={{ transform: "scaleX(-1)" }}
+      />
       <div className="flex justify-center items-center gap-2 mb-2">
         {!cam ? (
-          <div className="hover:bg-zinc-700 p-2 rounded-full cursor-pointer text-zinc-300">
+          <div className="hover:bg-zinc-700 p-2 rounded-full cursor-pointer text-zinc-700 hover:text-zinc-200">
             <IoVideocamOutline size={20} onClick={() => setCam(true)} />
           </div>
         ) : (
-          <div className="hover:bg-zinc-700 p-2 rounded-full cursor-pointer text-zinc-300">
+          <div className="hover:bg-zinc-700 p-2 rounded-full cursor-pointer text-zinc-700 hover:text-zinc-200">
             <IoVideocamOffOutline size={20} onClick={() => setCam(false)} />
           </div>
         )}
 
         {!mic ? (
-          <div className="hover:bg-zinc-700 p-2 rounded-full cursor-pointer text-zinc-300">
+          <div className="hover:bg-zinc-700 p-2 rounded-full cursor-pointer text-zinc-700 hover:text-zinc-200">
             <PiMicrophoneLight size={20} onClick={() => setMic(true)} />
           </div>
         ) : (
-          <div className="hover:bg-zinc-700 p-2 rounded-full cursor-pointer text-zinc-300">
+          <div className="hover:bg-zinc-700 p-2 rounded-full cursor-pointer text-zinc-700 hover:text-zinc-200">
             <PiMicrophoneSlashLight size={20} onClick={() => setMic(false)} />
           </div>
         )}
       </div>
       <button
-        className="bg-blue-100 hover:bg-blue-200 w-full py-2 rounded font-thin"
+        className="bg-blue-300 hover:bg-blue-400 w-full py-2 rounded font-thin"
         onClick={startSession}
       >
         Start

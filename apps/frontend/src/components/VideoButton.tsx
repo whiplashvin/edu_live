@@ -9,7 +9,7 @@ function VideoButton({ videoRoom }: { videoRoom: Room | null }) {
     <div className="group flex flex-col items-center cursor-pointer">
       {videoOff ? (
         <IoVideocamOutline
-          className="text-sm"
+          className="text-lg"
           onClick={() => {
             setVideoOff(false);
             videoRoom?.localParticipant.setCameraEnabled(true);
@@ -17,16 +17,16 @@ function VideoButton({ videoRoom }: { videoRoom: Room | null }) {
         />
       ) : (
         <FiVideoOff
-          className="text-sm"
+          className="text-lg"
           onClick={() => {
             setVideoOff(true);
             videoRoom?.localParticipant.setCameraEnabled(false);
           }}
         />
       )}
-      <span className="text-zinc-600 text-[10px] md:text-xs group-hover:text-blue-200 font-thin">
+      {/* <span className="text-zinc-600 text-[10px] md:text-xs group-hover:text-blue-200 font-thin">
         Video
-      </span>
+      </span> */}
     </div>
   );
 }

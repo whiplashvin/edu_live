@@ -33,7 +33,7 @@ function Navbar() {
   }, [setNavbarHeight]);
   return (
     <div
-      className="xl:hidden sticky top-0 flex justify-between items-center z-50 bg-zinc-900 px-2 rounded-lg w-full"
+      className="xl:hidden sticky top-0 flex justify-between items-center z-50 bg-zinc-100 px-2 rounded-lg w-full"
       ref={ref}
     >
       <div className="flex gap-2 text-blue-200 justify-start items-center p-4">

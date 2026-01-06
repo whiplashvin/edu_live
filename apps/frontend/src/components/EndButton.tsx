@@ -22,10 +22,10 @@ function EndButton({ endClass }: { endClass: () => void }) {
       </DropdownMenuContent>
       <DropdownMenuTrigger>
         <div className="group flex flex-col items-center cursor-pointer">
-          <MdCallEnd className="text-rose-500 text-sm" />
-          <span className="text-zinc-600 text-[10px] md:text-xs group-hover:text-rose-500 font-thin">
+          <MdCallEnd className="text-rose-500 text-lg" />
+          {/* <span className="text-zinc-600 text-[10px] md:text-xs group-hover:text-rose-500 font-thin">
             End
-          </span>
+          </span> */}
         </div>
       </DropdownMenuTrigger>
     </DropdownMenu>

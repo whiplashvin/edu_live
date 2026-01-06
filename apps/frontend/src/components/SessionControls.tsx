@@ -28,7 +28,8 @@ function SessionControls({ videoRoom }: { videoRoom: Room | null }) {
   }, [videoRoom]);
 
   async function endClass() {
-    if (!Socket || !videoRoom) return;
+    // if (!Socket || !videoRoom) return;
+    if (!videoRoom) return;
     await axios.post(
       `${import.meta.env.VITE_PRIMARY_BACKEND_URL}/session/${sessionId}/end`,
       {},
@@ -36,15 +37,15 @@ function SessionControls({ videoRoom }: { videoRoom: Room | null }) {
     );
     videoRoom.localParticipant.setCameraEnabled(false);
     videoRoom.disconnect();
-    Socket.send(
-      JSON.stringify({
-        event: "end-class",
-        payload: {
-          sessionId: sessionId,
-        },
-      })
-    );
-    Socket.close();
+    // Socket.send(
+    //   JSON.stringify({
+    //     event: "end-class",
+    //     payload: {
+    //       sessionId: sessionId,
+    //     },
+    //   })
+    // );
+    // Socket.close();
     navigate(-1);
   }
 
@@ -138,7 +139,7 @@ function SessionControls({ videoRoom }: { videoRoom: Room | null }) {
   }
   return (
     <div className="flex justify-center items-center gap-10">
-      <div className="border border-neutral-600 text-neutral-200 flex flex-col md:flex-row justify-center items-center gap-2 px-2 py-1 rounded-xl">
+      <div className="border border-neutral-600 text-neutral-200 flex flex-col md:flex-row justify-center items-center gap-2 px-2 py-1 rounded-md">
         <input
           onChange={(e) => setPdfFile(e.target.files![0] || null)}
           type="file"

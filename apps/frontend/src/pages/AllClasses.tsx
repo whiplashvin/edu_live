@@ -1,10 +1,8 @@
-import { useRecoilValue } from "recoil";
 import AllClassesUser from "../components/AllClassesUser";
-import { navbarHeight } from "@/recoil";
 import { useEffect, useState } from "react";
 
 function AllClasses() {
-  const NavbarHeight = useRecoilValue(navbarHeight);
+  // const NavbarHeight = useRecoilValue(navbarHeight);
   const [deviceHeight, setDeviceHeight] = useState<number | null>(null);
   useEffect(() => {
     setDeviceHeight(window.innerHeight);
@@ -12,13 +10,18 @@ function AllClasses() {
   return (
     <div
       style={{
-        height: `calc(100vh - ${NavbarHeight}px - 16px - 16px)`,
+        // height: `calc(100vh - ${NavbarHeight}px - 16px - 16px)`,
+        height: "100vh",
         overflowY: `${deviceHeight! < 800 ? "scroll" : "auto"}`,
       }}
-      className={`w-full col-span-5 bg-zinc-950 rounded-xl py-10 relative overflow-y-auto scrollbar-thin scrollbar-track-zinc-950 scrollbar-thumb-zinc-500`}
+      className={`w-full col-span-5 relative overflow-y-auto scrollbar-thin scrollbar-track-zinc-950 scrollbar-thumb-zinc-500`}
     >
+      {/* <div className="flex items-end gap-1 text-zinc-900 justify-center p-4 border-b border-zinc-200 bg-rose-400">
+        <LiaSchoolSolid className="text-3xl md:text-3xl" />
+        <span className="text-xl md:text-xl font-light">Mahei</span>
+      </div> */}
       <div>
-        <h1 className="text-sm md:text-2xl text-neutral-400 font-light ml-10">
+        <h1 className="text-sm md:text-xl text-zinc-900 font-light border-b border-zinc-200 p-4 pl-8">
           Live Classes
         </h1>
         <AllClassesUser />

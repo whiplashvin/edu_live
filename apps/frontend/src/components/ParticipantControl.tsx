@@ -57,7 +57,7 @@ function ParticipantControl() {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[200px] justify-between bg-zinc-300 font-thin h-8 text-[10px] md:text-base"
+          className="w-[200px] justify-between bg-zinc-300 font-thin h-8 text-[10px] md:text-sm"
         >
           All Participants
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -70,19 +70,19 @@ function ParticipantControl() {
               {participants.map((participant) => (
                 <CommandItem
                   key={participant.identity}
-                  className="text-zinc-900 hover:bg-zinc-400 flex justify-between text-[10px] md:text-base"
+                  className="text-zinc-900 hover:bg-zinc-400 flex justify-between text-[10px] md:text-sm font-thin"
                 >
                   {participant.identity}
                   {participant.isPublisher ? (
                     <button
-                      className="bg-green-600 px-2 py-1 rounded-lg text-zinc-200 text-[10px] md:text-base cursor-not-allowed"
+                      className="bg-green-500 px-1.5 py-0.5 rounded text-zinc-200 text-[10px] md:text-sm font-thin cursor-not-allowed"
                       disabled={true}
                     >
                       host
                     </button>
                   ) : (
                     <button
-                      className="bg-red-600 cursor-pointer px-2 py-1 rounded-lg text-zinc-200 text-[10px] md:text-base"
+                      className="bg-red-600 cursor-pointer px-1.5 py-0.5 rounded text-zinc-200 text-[10px] md:text-sm font-thin"
                       onClick={() => removeParticiapnt(participant.identity)}
                     >
                       remove

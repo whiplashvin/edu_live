@@ -10,10 +10,6 @@ import {
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { db } from "@repo/db/db";
 
-console.log({
-  utils: process.env.AWS_ACCESS_KEY!,
-  utils1: process.env.AWS_SECRET_ACCESS_KEY!,
-});
 export async function convertAndStore(data: string) {
   try {
     const parsed: Payload = JSON.parse(data);
@@ -32,9 +28,7 @@ export async function convertAndStore(data: string) {
     };
 
     const convert = pdf2pic.fromBuffer(buffer, options);
-    console.log(convert);
     const result = await convert.bulk(-1);
-    console.log(result);
     console.log("conversion completed");
     return { result, sessionId, taskId };
   } catch (err) {
@@ -43,11 +37,8 @@ export async function convertAndStore(data: string) {
       throw new Error(err.message);
     }
     throw new Error(String(err));
-    console.log(err);
   }
 }
-
-export async function uploadToAWS() {}
 
 export async function uploadImagesToS3(images: any[], s3: S3Client) {
   const uploadPromises = images.map(async (res) => {

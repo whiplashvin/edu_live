@@ -8,7 +8,7 @@ function AudioButton({ videoRoom }: { videoRoom: Room | null }) {
     <div className="group flex flex-col items-center cursor-pointer">
       {audioMuted ? (
         <AiOutlineAudio
-          className="text-sm"
+          className="text-lg"
           onClick={async () => {
             setAudioMuted(false);
             await videoRoom?.localParticipant.setMicrophoneEnabled(true);
@@ -16,16 +16,16 @@ function AudioButton({ videoRoom }: { videoRoom: Room | null }) {
         />
       ) : (
         <AiOutlineAudioMuted
-          className="text-sm"
+          className="text-lg"
           onClick={async () => {
             setAudioMuted(true);
             await videoRoom?.localParticipant.setMicrophoneEnabled(false);
           }}
         />
       )}
-      <span className="text-zinc-600 text-[10px] md:text-xs group-hover:text-blue-200 font-thin">
+      {/* <span className="text-zinc-600 text-[10px] md:text-xs group-hover:text-blue-200 font-thin">
         Audio
-      </span>
+      </span> */}
     </div>
   );
 }

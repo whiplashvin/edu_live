@@ -25,30 +25,30 @@ function CreateSess() {
   });
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger className="bg-zinc-900 text-blue-300 px-4 py-2 rounded-lg flex items-center text-sm font-thin hover:bg-zinc-800 hover:text-blue-200 gap-2">
+      <DialogTrigger className="bg-zinc-700 text-zinc-100 px-4 py-2 rounded-lg flex items-center text-sm font-thin hover:bg-zinc-800 hover:bg-zinc-900 gap-2">
         <IoAdd size={20} />
         Create Session
       </DialogTrigger>
-      <DialogContent className="bg-zinc-950 border-zinc-700 w-72 md:w-full rounded-lg">
+      <DialogContent className="bg-zinc-50 border-zinc-700 w-72 md:w-full rounded-lg">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-thin text-zinc-200 mb-5">
+          <DialogTitle className="text-2xl font-thin text-zinc-900 mb-5 tracking-wide">
             Create a Session
           </DialogTitle>
           <DialogDescription>
             <input
               value={title}
-              className="w-full px-4 py-3 rounded-lg font-thin bg-zinc-950 border border-zinc-700 text-zinc-200 text-xs mb-5"
+              className="w-full px-4 py-3 rounded-lg font-thin bg-zinc-200 border border-zinc-300 text-zinc-900 text-xs mb-5 focus:outline-none"
               placeholder="Give it a title"
               onChange={(e) => setTitle(e.target.value)}
             />
             <textarea
               // value={title}
-              className="w-full px-4 py-3 rounded-lg font-thin bg-zinc-950 border border-zinc-700 text-zinc-200 text-xs mb-5"
+              className="w-full px-4 py-3 rounded-lg font-thin bg-zinc-200 border border-zinc-300 text-zinc-900 text-xs mb-5 focus:outline-none"
               placeholder="Description"
               // onChange={(e) => setTitle(e.target.value)}
             />
             <button
-              className="bg-blue-100 hover:bg-blue-200 py-4 rounded-lg text-zinc-900 font-thin text-xs w-full"
+              className="bg-zinc-800 hover:bg-zinc-900 py-4 rounded-lg text-zinc-50 font-thin text-xs w-full"
               onClick={() => mutate(title)}
             >
               Create

@@ -59,10 +59,12 @@ function Session() {
         )}
         <div className=" flex justify-center gap-2">
           {Role === "admin" ? (
-            <div className="flex flex-col md:flex-row items-center gap-2">
-              <SessionControls videoRoom={videoRoom} />
+            <div className="flex flex-col md:flex-row items-center justify-center w-full gap-2">
               <ParticipantControl />
-              <SecondarySessControl />
+              <div className="flex items-center gap-4">
+                <SessionControls videoRoom={videoRoom} />
+                <SecondarySessControl />
+              </div>
             </div>
           ) : (
             <div className="flex items-center justify-center gap-2">

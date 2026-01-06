@@ -44,11 +44,11 @@ function UserLeaveBtn({ videoRoom }: { videoRoom: Room | null }) {
             </DropdownMenuItem>
           </DropdownMenuContent>
           <DropdownMenuTrigger>
-            <TbDoorExit size={18} className="text-red-600 hover:scale-110" />
+            <TbDoorExit size={20} className="text-red-600 hover:scale-110" />
           </DropdownMenuTrigger>
         </DropdownMenu>
 
-        <span className="text-zinc-600 text-xs font-thin">Leave</span>
+        {/* <span className="text-zinc-600 text-xs font-thin">Leave</span> */}
       </div>
     </div>
   );
