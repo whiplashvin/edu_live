@@ -46,7 +46,7 @@ model CurrentRoomState{
   epoch      BigInt
   session    Session @relation(fields: [session_Id],references: [sessionId])
   session_Id String
-  // @@index([session_Id, epoch(sort: Desc)])
+  // @@index([session_Id, epoch(sort: Desc)]) 
 }
 
 
@@ -63,6 +63,7 @@ model Payload {
   adminWidth      Int?
   currRoomState   CurrentRoomState @relation(fields: [currRoomStateId],references: [id])
   currRoomStateId String 
+  // @@index([currRoomStateId, epoch(sort: Asc)]) 
 }
 
 model Chat{

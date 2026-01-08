@@ -1,4 +1,4 @@
-import { SetStateAction } from "react";
+import React, { SetStateAction } from "react";
 import { socket, toDisplay } from "../recoil";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useParams } from "react-router-dom";
@@ -8,11 +8,13 @@ function WhiteBoardControls({
   setAction,
   setColor,
   clearCanvas,
+  setStrokeWidth,
 }: {
   action: string | null;
   setAction: React.Dispatch<SetStateAction<"draw" | "erase" | null>>;
   setColor: React.Dispatch<SetStateAction<string>>;
   clearCanvas: () => void;
+  setStrokeWidth: React.Dispatch<SetStateAction<number>>;
 }) {
   const setToDisplay = useSetRecoilState(toDisplay);
   const Socket = useRecoilValue(socket);
@@ -26,6 +28,7 @@ function WhiteBoardControls({
           onClick={() => {
             setAction("draw");
             setColor("black");
+            setStrokeWidth(7);
             Socket?.send(
               JSON.stringify({
                 event: "whiteBoard-draw",
@@ -41,8 +44,9 @@ function WhiteBoardControls({
         <button
           className={`px-2 py-1 rounded bg-blue-200 text-zinc-900 hover:scale-105 font-thin text-[10px] ${action === "erase" && "ring-1 ring-offset-1"}`}
           onClick={() => {
-            setColor("#d4d4d4");
+            setColor("#f5faff");
             setAction("erase");
+            setStrokeWidth(14);
             Socket?.send(
               JSON.stringify({
                 event: "whiteBoard-erase",
@@ -71,14 +75,14 @@ function WhiteBoardControls({
             );
           }}
         >
-          <option value="black">black</option>
-          <option value="red">red</option>
-          <option value="blue">blue</option>
+          <option value="#343a40">black</option>
+          <option value="#ff8787">red</option>
+          <option value="#4dabf7">blue</option>
         </select>
         <button
           className="px-2 py-1 rounded bg-blue-200 hover:scale-105 text-zinc-900 font-thin text-[10px]"
           onClick={() => {
-            clearCanvas();
+            console.log("sending clear");
             Socket?.send(
               JSON.stringify({
                 event: "whiteBoard-clear",
@@ -87,6 +91,7 @@ function WhiteBoardControls({
                 },
               })
             );
+            clearCanvas();
           }}
         >
           clear

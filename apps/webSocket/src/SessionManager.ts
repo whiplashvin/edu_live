@@ -306,6 +306,15 @@ export class SessionManager {
         },
       ],
     });
+    this.sessions.get(sessionId)?.forEach((user) => {
+      if (user.userRole !== "admin") {
+        user.socket.send(
+          JSON.stringify({
+            event: "mouse-up",
+          })
+        );
+      }
+    });
   }
   whiteBoardColorChange(sessionId: string, color: string) {
     console.log("wb stroke change");
