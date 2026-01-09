@@ -22,7 +22,7 @@ function AllClasses() {
       </div> */}
       <div>
         <h1 className="text-sm md:text-xl text-zinc-900 font-light border-b border-zinc-200 p-4 pl-8">
-          Live Classes
+          Classes
         </h1>
         <AllClassesUser />
       </div>

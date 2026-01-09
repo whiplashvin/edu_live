@@ -390,6 +390,129 @@ function Whiteboard() {
   const [strokes, setStrokes] = React.useState<Stroke[]>([]);
   const [strokeWidth, setStrokeWidth] = useState(7);
 
+  const temp = useRef<Point[]>([]);
+  const temp2 = useRef<Stroke[]>([]);
+
+  useEffect(() => {
+    if (WhiteBoardState.length > 0) {
+      console.log("Inside if block");
+      const canvas = CanvasRef.current;
+      if (!canvas) return;
+
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+
+      const { height, width } = canvas.getBoundingClientRect();
+
+      let xStart: number;
+      let yStart: number;
+      let xTimes: number;
+      let yTimes: number;
+
+      if (WhiteBoardState[1].event === "board-color") {
+        xTimes = width / WhiteBoardState[2].adminWidth;
+        yTimes = height / WhiteBoardState[2].adminHeight;
+        xStart = WhiteBoardState[2].x * xTimes;
+        yStart = WhiteBoardState[2].y * yTimes;
+
+        let color = "";
+        let lineWidth = 2;
+        for (let i = 1; i < WhiteBoardState.length; i++) {
+          switch (WhiteBoardState[i].event) {
+            case "board-clear":
+              // ctx.clearRect(0, 0, canvas.width, canvas.height);
+              // setTemp([]);
+              break;
+            case "board-erase":
+              color = "#d4d4d4";
+              lineWidth = 20;
+              break;
+            case "board-draw":
+              color = "black";
+              lineWidth = 2;
+              break;
+            case "board-color":
+              color = WhiteBoardState[i].stroke;
+              break;
+            case "mouse-move":
+              {
+                const newX = xTimes * WhiteBoardState[i].x;
+                const newY = yTimes * WhiteBoardState[i].y;
+                ctx.beginPath();
+                ctx.moveTo(xStart, yStart);
+                ctx.lineTo(newX, newY);
+                ctx.strokeStyle = color;
+                ctx.lineWidth = lineWidth;
+                ctx.stroke();
+                xStart = newX;
+                yStart = newY;
+              }
+              break;
+            case "mouse-up":
+              console.log("Mouse up!");
+              // isDrawing = false;
+              break;
+            default:
+              break;
+          }
+        }
+      } else {
+        xTimes = width / WhiteBoardState[1].adminWidth;
+        yTimes = height / WhiteBoardState[1].adminHeight;
+        xStart = WhiteBoardState[1].x * xTimes;
+        yStart = WhiteBoardState[1].y * yTimes;
+        let isDrawing = false;
+
+        for (let i = 1; i < WhiteBoardState.length; i++) {
+          switch (WhiteBoardState[i].event) {
+            case "board-clear":
+              temp.current = [];
+              break;
+            case "board-erase":
+              isDrawing = true;
+              // color = "#d4d4d4";
+              // lineWidth = 20;
+              break;
+            case "board-draw":
+              isDrawing = true;
+              // color = "black";
+              // lineWidth = 2;
+              break;
+            case "board-color":
+              // color = WhiteBoardState[i].stroke;
+              break;
+            case "mouse-down":
+              isDrawing = true;
+              xStart = xTimes * WhiteBoardState[i].x;
+              yStart = yTimes * WhiteBoardState[i].y;
+              temp.current.push([xStart, yStart]);
+              break;
+            case "mouse-move":
+              if (!isDrawing) {
+                break;
+              } else {
+                const newX = xTimes * WhiteBoardState[i].x;
+                const newY = yTimes * WhiteBoardState[i].y;
+                temp.current.push([newX, newY]);
+              }
+              break;
+            case "mouse-up":
+              isDrawing = false;
+              temp2.current.push({
+                color: "black",
+                size: 7,
+                points: temp.current,
+              });
+              temp.current = [];
+              break;
+            default:
+              break;
+          }
+        }
+      }
+    }
+  }, [WhiteBoardState]);
+
   useEffect(() => {
     const canvas = CanvasRef.current;
     if (!canvas) return;
@@ -408,6 +531,29 @@ function Whiteboard() {
       ctx.scale(dpr, dpr);
     }
 
+    const stroke1 = getStroke(temp.current, {
+      size: 7,
+      thinning: 0.5,
+      smoothing: 0.5,
+      streamline: 0.5,
+    });
+    const path1 = new Path2D(getSvgPathFromStroke(stroke1));
+    ctx!.fillStyle = color;
+    ctx!.fill(path1);
+
+    for (const t of temp2.current) {
+      const stroke = getStroke(t.points, {
+        size: t.size,
+        thinning: 0.5,
+        smoothing: 0.5,
+        streamline: 0.5,
+      });
+
+      const path = new Path2D(getSvgPathFromStroke(stroke));
+      ctx!.fillStyle = t.color;
+      ctx!.fill(path);
+    }
+
     for (const s of strokes) {
       const stroke = getStroke(s.points, {
         size: s.size,
@@ -420,12 +566,14 @@ function Whiteboard() {
       ctx!.fillStyle = s.color;
       ctx!.fill(path);
     }
+
     const stroke = getStroke(points, {
       size: strokeWidth,
       thinning: 0.5,
       smoothing: 0.5,
       streamline: 0.5,
     });
+
     const path = new Path2D(getSvgPathFromStroke(stroke));
     ctx!.fillStyle = color;
     ctx!.fill(path);
@@ -495,6 +643,8 @@ function Whiteboard() {
     points,
     strokes,
     strokeWidth,
+    temp,
+    temp2,
   ]);
 
   function start(e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) {
@@ -544,11 +694,15 @@ function Whiteboard() {
     );
   }
   const clearCanvas = () => {
-    const canvas = CanvasRef.current;
-    const ctx = canvas?.getContext("2d");
-    if (!canvas || !ctx) return;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
     setStrokes([]);
+    temp.current = [];
+    temp2.current = [];
+    ContextRef.current?.clearRect(
+      0,
+      0,
+      CanvasRef.current!.width,
+      CanvasRef.current!.height
+    );
   };
   function handlePointerUp() {
     if (!points.length) return;
