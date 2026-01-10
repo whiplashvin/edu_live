@@ -24,10 +24,10 @@ function WhiteBoardControls({
     <div className="p-2">
       <div className="flex gap-4 items-center justify-end">
         <button
-          className={`px-2 py-1 rounded bg-blue-200 text-zinc-900 hover:scale-105 font-thin text-[10px] ${action === "draw" && "ring-1 ring-offset-2"}`}
+          className={`px-2 py-1 rounded bg-blue-500 text-zinc-50 hover:scale-105 font-thin text-[10px] ${action === "draw" && "ring-1 ring-offset-2"}`}
           onClick={() => {
             setAction("draw");
-            setColor("black");
+            setColor("#343a40");
             setStrokeWidth(7);
             Socket?.send(
               JSON.stringify({
@@ -42,7 +42,7 @@ function WhiteBoardControls({
           draw
         </button>
         <button
-          className={`px-2 py-1 rounded bg-blue-200 text-zinc-900 hover:scale-105 font-thin text-[10px] ${action === "erase" && "ring-1 ring-offset-1"}`}
+          className={`px-2 py-1 rounded bg-blue-500 text-zinc-50 hover:scale-105 font-thin text-[10px] ${action === "erase" && "ring-1 ring-offset-2"}`}
           onClick={() => {
             setColor("#f5faff");
             setAction("erase");
@@ -80,7 +80,7 @@ function WhiteBoardControls({
           <option value="#4dabf7">blue</option>
         </select>
         <button
-          className="px-2 py-1 rounded bg-blue-200 hover:scale-105 text-zinc-900 font-thin text-[10px]"
+          className="px-2 py-1 rounded bg-blue-500 hover:scale-105 text-zinc-50 font-thin text-[10px]"
           onClick={() => {
             console.log("sending clear");
             Socket?.send(
@@ -97,7 +97,7 @@ function WhiteBoardControls({
           clear
         </button>
         <button
-          className="px-2 py-1 rounded bg-red-600 text-neutral-30 hover:scale-105 text-neutral-200 font-thin text-[10px]"
+          className="px-2 py-1 rounded bg-red-500 text-neutral-50 hover:scale-105 font-thin text-[10px]"
           onClick={() => {
             console.log("close");
             setToDisplay("video");

@@ -9,7 +9,7 @@ import { useParams } from "react-router-dom";
 //   const CanvasRef = useRef<HTMLCanvasElement | null>(null);
 //   const ContextRef = useRef<CanvasRenderingContext2D | null>(null);
 //   const [isDrawing, setIsDrawing] = useState(false);
-//   const [color, setColor] = useState("black");
+//   const [color, setColor] = useState("#343a40");
 //   const [action, setAction] = useState<"draw" | "erase" | null>(null);
 //   const Socket = useRecoilValue(socket);
 //   const Role = useRecoilValue(userRole);
@@ -71,7 +71,7 @@ import { useParams } from "react-router-dom";
 //               lineWidth = 20;
 //               break;
 //             case "board-draw":
-//               color = "black";
+//               color = "#343a40";
 //               lineWidth = 2;
 //               break;
 //             case "board-color":
@@ -105,7 +105,7 @@ import { useParams } from "react-router-dom";
 //         xStart = WhiteBoardState[1].x * xTimes;
 //         yStart = WhiteBoardState[1].y * yTimes;
 
-//         let color = "black";
+//         let color = "#343a40";
 //         let lineWidth = 2;
 //         let isDrawing = false;
 
@@ -122,7 +122,7 @@ import { useParams } from "react-router-dom";
 //               break;
 //             case "board-draw":
 //               isDrawing = true;
-//               color = "black";
+//               color = "#343a40";
 //               lineWidth = 2;
 //               break;
 //             case "board-color":
@@ -181,7 +181,7 @@ import { useParams } from "react-router-dom";
 //       switch (parsed.event) {
 //         case "whiteBoard-draw":
 //           setAction("draw");
-//           ctx.strokeStyle = "black";
+//           ctx.strokeStyle = "#343a40";
 //           ctx.lineWidth = 2;
 //           break;
 //         case "start-drawing-board": {
@@ -378,7 +378,7 @@ function Whiteboard() {
   const CanvasRef = useRef<HTMLCanvasElement | null>(null);
   const ContextRef = useRef<CanvasRenderingContext2D | null>(null);
   const [isDrawing, setIsDrawing] = useState(false);
-  const [color, setColor] = useState("black");
+  const [color, setColor] = useState("#343a40");
   const [action, setAction] = useState<"draw" | "erase" | null>(null);
   const Socket = useRecoilValue(socket);
   const Role = useRecoilValue(userRole);
@@ -392,6 +392,7 @@ function Whiteboard() {
 
   const temp = useRef<Point[]>([]);
   const temp2 = useRef<Stroke[]>([]);
+  const currColor = useRef<string>("#343a40");
 
   useEffect(() => {
     if (WhiteBoardState.length > 0) {
@@ -414,7 +415,6 @@ function Whiteboard() {
         yTimes = height / WhiteBoardState[2].adminHeight;
         xStart = WhiteBoardState[2].x * xTimes;
         yStart = WhiteBoardState[2].y * yTimes;
-
         let color = "";
         let lineWidth = 2;
         for (let i = 1; i < WhiteBoardState.length; i++) {
@@ -428,7 +428,7 @@ function Whiteboard() {
               lineWidth = 20;
               break;
             case "board-draw":
-              color = "black";
+              color = "#343a40";
               lineWidth = 2;
               break;
             case "board-color":
@@ -467,19 +467,17 @@ function Whiteboard() {
           switch (WhiteBoardState[i].event) {
             case "board-clear":
               temp.current = [];
+              temp2.current = [];
               break;
             case "board-erase":
               isDrawing = true;
-              // color = "#d4d4d4";
-              // lineWidth = 20;
               break;
             case "board-draw":
               isDrawing = true;
-              // color = "black";
-              // lineWidth = 2;
+              currColor.current = "#343a40";
               break;
             case "board-color":
-              // color = WhiteBoardState[i].stroke;
+              currColor.current = WhiteBoardState[i].stroke;
               break;
             case "mouse-down":
               isDrawing = true;
@@ -499,9 +497,9 @@ function Whiteboard() {
             case "mouse-up":
               isDrawing = false;
               temp2.current.push({
-                color: "black",
-                size: 7,
                 points: temp.current,
+                size: 7,
+                color: currColor.current,
               });
               temp.current = [];
               break;
@@ -538,7 +536,7 @@ function Whiteboard() {
       streamline: 0.5,
     });
     const path1 = new Path2D(getSvgPathFromStroke(stroke1));
-    ctx!.fillStyle = color;
+    ctx!.fillStyle = currColor.current;
     ctx!.fill(path1);
 
     for (const t of temp2.current) {
@@ -587,7 +585,7 @@ function Whiteboard() {
       switch (parsed.event) {
         case "whiteBoard-draw":
           setAction("draw");
-          setColor("black");
+          setColor("#343a40");
           setStrokeWidth(7);
           break;
         case "start-drawing-board": {
@@ -643,11 +641,11 @@ function Whiteboard() {
     points,
     strokes,
     strokeWidth,
-    temp,
-    temp2,
   ]);
 
   function start(e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) {
+    if (Role !== "admin") return;
+
     const canvas = CanvasRef.current;
     const ctx = ContextRef.current;
     if (!canvas || !ctx) return;
@@ -672,7 +670,7 @@ function Whiteboard() {
   }
   function draw(e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) {
     if (!isDrawing || action === null) return;
-
+    if (Role !== "admin") return;
     const canvas = CanvasRef.current;
     const ctx = ContextRef.current;
     if (!canvas || !ctx) return;
