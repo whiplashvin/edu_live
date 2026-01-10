@@ -529,16 +529,6 @@ function Whiteboard() {
       ctx.scale(dpr, dpr);
     }
 
-    const stroke1 = getStroke(temp.current, {
-      size: 7,
-      thinning: 0.5,
-      smoothing: 0.5,
-      streamline: 0.5,
-    });
-    const path1 = new Path2D(getSvgPathFromStroke(stroke1));
-    ctx!.fillStyle = currColor.current;
-    ctx!.fill(path1);
-
     for (const t of temp2.current) {
       const stroke = getStroke(t.points, {
         size: t.size,
