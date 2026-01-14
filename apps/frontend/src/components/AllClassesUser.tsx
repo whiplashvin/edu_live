@@ -20,7 +20,7 @@ function AllClassesUser() {
   return (
     <div className="">
       {isFetching && (
-        <p className="text-center text-xs font-thin text-sky-200">
+        <p className="text-center text-xs font-thin text-indigo-200">
           checking for live classes...
         </p>
       )}
@@ -28,7 +28,7 @@ function AllClassesUser() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <p className="text-center text-zinc-800 text-xs font-thin">
             No live classes at the moment. Please contact admin at {""}
-            <span className="text-sky-500">vin.aka.ak@gmail.com</span>
+            <span className="text-indigo-500">vin.aka.ak@gmail.com</span>
           </p>
         </div>
       )}

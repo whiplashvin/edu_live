@@ -70,19 +70,19 @@ function ParticipantControl() {
               {participants.map((participant) => (
                 <CommandItem
                   key={participant.identity}
-                  className="text-zinc-900 hover:bg-zinc-400 flex justify-between text-[10px] md:text-sm font-thin"
+                  className="text-zinc-900 hover:bg-indigo-100/50 flex justify-between text-[10px] md:text-sm font-thin"
                 >
                   {participant.identity}
                   {participant.isPublisher ? (
                     <button
-                      className="bg-green-500 px-1.5 py-0.5 rounded text-zinc-200 text-[10px] md:text-sm font-thin cursor-not-allowed"
+                      className="bg-green-300 py-0.5 rounded text-zinc-900 text-[10px] md:text-xs font-thin cursor-not-allowed w-16 flex items-center justify-center"
                       disabled={true}
                     >
                       host
                     </button>
                   ) : (
                     <button
-                      className="bg-red-600 cursor-pointer px-1.5 py-0.5 rounded text-zinc-200 text-[10px] md:text-sm font-thin"
+                      className="bg-red-300 cursor-pointer py-0.5 rounded text-zinc-900 text-[10px] md:text-xs font-thin w-16 flex items-center justify-center"
                       onClick={() => removeParticiapnt(participant.identity)}
                     >
                       remove

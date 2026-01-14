@@ -25,7 +25,7 @@ function CreateSess() {
   });
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger className="bg-sky-400/30 border-[0.5px] border-sky-500 text-zinc-950 px-4 py-2 rounded-lg flex items-center text-sm font-thin hover:bg-sky-600/30 gap-2 shadow-lg">
+      <DialogTrigger className="bg-indigo-400/30 border-[0.5px] border-indigo-500 text-zinc-950 px-4 py-2 rounded-lg flex items-center text-sm font-thin hover:bg-indigo-600/30 gap-2 shadow-lg">
         <IoAdd size={20} />
         Create Session
       </DialogTrigger>
@@ -48,7 +48,7 @@ function CreateSess() {
               // onChange={(e) => setTitle(e.target.value)}
             />
             <button
-              className="bg-sky-400/30 border-[0.5px] border-sky-500 text-zinc-950 hover:bg-sky-600/30 py-4 rounded-lg font-thin text-xs w-full shadow-lg"
+              className="bg-indigo-400/30 border-[0.5px] border-indigo-500 text-zinc-950 hover:bg-indigo-600/30 py-4 rounded-lg font-thin text-xs w-full shadow-lg"
               onClick={() => mutate(title)}
             >
               Create

@@ -63,7 +63,7 @@ function CheckHair({ startSession }: { startSession: () => Promise<void> }) {
         )}
       </div>
       <button
-        className="bg-sky-400/30 border-[0.5px] border-sky-500 text-zinc-950 hover:bg-sky-600/30 w-full py-2 rounded-lg font-thin"
+        className="bg-indigo-400/30 border-[0.5px] border-indigo-500 text-zinc-950 hover:bg-indigo-600/30 w-full py-2 rounded-lg font-thin"
         onClick={startSession}
       >
         Start

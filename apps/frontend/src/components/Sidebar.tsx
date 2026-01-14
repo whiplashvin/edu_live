@@ -40,7 +40,8 @@ function Sidebar() {
           height="34"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="#00a6f4"
+          // stroke="#00a6f4"
+          stroke="#7c86ff"
           strokeWidth="1.1"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -60,14 +61,15 @@ function Sidebar() {
           <path d="M12 12l-2 -1.12" />
           <path d="M6 8.6l-2 -1.1" />
         </svg>
-        <span className="text-xl md:text-xl font-extralight text-zinc-500">
-          Edunet
+        {/* <span className="text-xl md:text-xl font-extralight text-zinc-500 tracking-widest"> */}
+        <span className="text-lg md:text-xl font-extralight text-zinc-700 tracking-widest">
+          EDUNET
         </span>
       </button>
       <div className="flex flex-col text-zinc-500 mt-10 font-light text-sm">
         <Link to="/dashboard/all-classes" className="p-3">
           <div
-            className={`flex items-center gap-2 hover:text-zinc-800 p-2 rounded-md ${currPath === "/all-classes" ? "bg-sky-200/80 transition-all ease-in-out duration-300 delay-100" : "hover:translate-x-1.5 transition-all ease-in-out duration-300 delay-100"}`}
+            className={`flex items-center gap-2 hover:text-zinc-800 p-2 rounded-md ${currPath === "/all-classes" ? "bg-indigo-200/80 transition-all ease-in-out duration-300 delay-100" : "hover:translate-x-1.5 transition-all ease-in-out duration-300"}`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -91,7 +93,7 @@ function Sidebar() {
         {Role === "admin" && (
           <Link to="/dashboard/admin" className="p-3">
             <div
-              className={`flex items-center gap-2 hover:text-zinc-800 p-2 rounded-md ${currPath === "/admin" ? "bg-sky-200/80 transition-all ease-in-out duration-300 delay-100" : "hover:translate-x-1.5 transition-all ease-in-out duration-300 delay-100"}`}
+              className={`flex items-center gap-2 hover:text-zinc-800 p-2 rounded-md ${currPath === "/admin" ? "bg-indigo-200/80 transition-all ease-in-out duration-300 delay-100" : "hover:translate-x-1.5 transition-all ease-in-out duration-300"}`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -115,7 +117,7 @@ function Sidebar() {
         )}
         <Link to="/dashboard/profile" className="p-3">
           <div
-            className={`flex items-center gap-2 hover:text-zinc-800 p-2 rounded-md ${currPath === "/profile" ? "bg-sky-200/80 transition-all ease-in-out duration-300 delay-100" : "hover:translate-x-1.5 transition-all ease-in-out duration-300 delay-100"}`}
+            className={`flex items-center gap-2 hover:text-zinc-800 p-2 rounded-md ${currPath === "/profile" ? "bg-indigo-200/80 transition-all ease-in-out duration-300 delay-100" : "hover:translate-x-1.5 transition-all ease-in-out duration-300"}`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -142,7 +144,7 @@ function Sidebar() {
           <DropdownMenuContent
             side="top"
             sideOffset={8}
-            // className="bg-sky-100 border-0"
+            // className="bg-indigo-100 border-0"
           >
             <DropdownMenuItem
               onClick={logout}

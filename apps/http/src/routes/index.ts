@@ -46,16 +46,6 @@ route.post("/signup", async (req, res) => {
     });
   } catch (err) {
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
-      // const target = err.meta?.target as String[];
-      // const fieldName = target[0];
-      // if (fieldName === "username") {
-      //   res.status(500).json({ message: "Username already taken" });
-      //   return;
-      // } else if (fieldName === "email") {
-      //   res.status(500).json({ message: "Email already taken" });
-      //   return;
-      // }
-
       const target = err.meta?.target;
       if (target && Array.isArray(target) && target.length > 0) {
         const fieldName = target[0] as string;

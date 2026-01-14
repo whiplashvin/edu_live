@@ -32,7 +32,7 @@ function Navbar() {
   }, [setNavbarHeight]);
   return (
     <div
-      className="xl:hidden sticky top-5 flex justify-between items-center z-50 bg-neutral-200/50 px-2 rounded-xl w-[95%] mx-auto"
+      className="xl:hidden fixed top-3 flex justify-between items-center z-50 bg-neutral-200/50 px-2 rounded-xl w-[95%] mx-auto"
       ref={ref}
     >
       <div className="flex gap-1 text-zinc-900 justify-start items-center p-4">
@@ -42,7 +42,8 @@ function Navbar() {
           height="24"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="#00a6f4"
+          // stroke="#00a6f4"
+          stroke="#7c86ff"
           strokeWidth="1.1"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -62,11 +63,12 @@ function Navbar() {
           <path d="M12 12l-2 -1.12" />
           <path d="M6 8.6l-2 -1.1" />
         </svg>
-        <span className="text-base font-extralight">Edunet</span>
+        <span className="text-base font-extralight text-zinc-700 tracking-widest">
+          EDUNET
+        </span>
       </div>
       <DropdownMenu>
         <DropdownMenuTrigger>
-          {/* <RxHamburgerMenu fontSize={20} color="#bfdbfe" /> */}
           <RxHamburgerMenu fontSize={20} color="oklch(21% 0.006 285.885)" />
         </DropdownMenuTrigger>
         <DropdownMenuContent className="bg-zinc-50 m-2 border-none">

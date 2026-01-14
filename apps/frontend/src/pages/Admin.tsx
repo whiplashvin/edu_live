@@ -19,9 +19,9 @@ function Admin() {
         overflowY: `${deviceHeight! < 800 ? "scroll" : "auto"}`,
       }}
     >
-      <div className="border-b border-zinc-200 h-14" />
+      <div className="lg:border-b lg:border-zinc-200 h-14" />
       <div className="flex justify-between items-center p-4 border border-zinc-300 rounded-xl my-5 w-[95%] mx-auto">
-        <div className="text-2xl text-sky-600 font-extralight">
+        <div className="text-2xl text-indigo-400 font-extralight">
           Manage Sessions
         </div>
         <CreateSess />

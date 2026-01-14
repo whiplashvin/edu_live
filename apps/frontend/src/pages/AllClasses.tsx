@@ -16,9 +16,9 @@ function AllClasses() {
       }}
       className={`w-full col-span-5 relative overflow-y-auto scrollbar-thin scrollbar-track-zinc-950 scrollbar-thumb-zinc-500`}
     >
-      <div className="border-b border-zinc-200 h-14" />
+      <div className="lg:border-b lg:border-zinc-200 h-14" />
       <div>
-        <h1 className="text-sm md:text-2xl text-sky-600 font-extralight p-4 pl-8 my-5">
+        <h1 className="text-sm md:text-2xl text-indigo-400 font-extralight p-4 pl-8 my-5">
           Live Classes
         </h1>
         <AllClassesUser />

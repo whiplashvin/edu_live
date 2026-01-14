@@ -89,22 +89,22 @@ function ClassUser({ title, sessionId }: { title: string; sessionId: string }) {
             {title}
           </span>
           <div
-            className={`${status === "active" ? "text-sky-300" : "text-zinc-400"} flex items-center gap-2 font-thin  text-sm md:text-base tracking-tight`}
+            className={`${status === "active" ? "text-indigo-300" : "text-zinc-400"} flex items-center gap-2 font-thin  text-sm md:text-base tracking-tight`}
           >
             <MdOnlinePrediction />
             <span>Active</span>
           </div>
         </div>
         <p className="text-zinc-700 text-[10px] md:text-[12px]  leading-5 font-extralight mb-5">
-          <span className="text-sky-500">Description:</span> Lorem ipsum dolor
-          sit amet consectetur adipisicing elit. Sed autem non tenetur! Mollitia
-          illo aut voluptatum, quas.
+          <span className="text-indigo-500">Description:</span> Lorem ipsum
+          dolor sit amet consectetur adipisicing elit. Sed autem non tenetur!
+          Mollitia illo aut voluptatum, quas.
         </p>
         <div className="flex w-full gap-2">
           <button
             onClick={joinSession}
-            // className={`${status === "active" ? "bg-rose-800" : "bg-sky-400/30 border-[0.5px] border-sky-500 hover:bg-sky-600/30"} py-2 rounded-lg text-neutral-950 font-thin cursor-pointer w-full text-sm shadow-md`}
-            className={`bg-sky-400/30 hover:bg-sky-600/30 border-[0.5px] border-sky-500 py-2 rounded-lg text-neutral-950 font-thin shadow-md w-full text-[10px] md:text-sm ${loading ? "cursor-not-allowed" : "cursor-pointer"}`}
+            // className={`${status === "active" ? "bg-rose-800" : "bg-indigo-400/30 border-[0.5px] border-indigo-500 hover:bg-indigo-600/30"} py-2 rounded-lg text-neutral-950 font-thin cursor-pointer w-full text-sm shadow-md`}
+            className={`bg-indigo-400/30 hover:bg-indigo-600/30 border-[0.5px] border-indigo-500 py-2 rounded-lg text-neutral-950 font-thin shadow-md w-full text-[10px] md:text-sm ${loading ? "cursor-not-allowed" : "cursor-pointer"}`}
           >
             {loading ? "Joining..." : "Join"}
           </button>
