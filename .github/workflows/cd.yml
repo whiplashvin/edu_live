@@ -1,0 +1,36 @@
+name: CD run
+
+on:
+  push:
+    braches:
+      - main
+
+jobs:
+  detect-changes:
+  runs-on: ubuntu-latest
+  outputs:
+    apps: ${{ steps.detect.outouts.apps }}
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Detect changed apps
+      id: detect
+      run: |
+        echo "Detecting changed apps..."
+        changed_apps=$(git diff --name-only HEAD^...HEAD | grep '^apps/' | cut -d'/' -f2 | sort -u)
+
+        echo "Found apps:"
+        echo "$changed_apps"
+
+        if [ -z "$changed_apps" ]; then
+          apps_json="[]"
+        else
+          # convert list to JSON array cleanly
+          apps_json=$(printf '%s\n' "$changed_apps" | jq -R . | jq -s -c .)
+        fi
+
+        echo "Final JSON: $apps_json"
+        echo "apps=$apps_json" >> "$GITHUB_OUTPUT"
